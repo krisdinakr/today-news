@@ -1,4 +1,14 @@
-export default interface ArticleResult {
+export interface ArticleResult {
+  totalResults: number;
+  articles: Article[];
+}
+
+type Source = {
+  id: string;
+  name: string;
+};
+
+export type Article = {
   source: Source;
   author: string;
   title: string;
@@ -7,9 +17,4 @@ export default interface ArticleResult {
   urlToImage: string;
   publishedAt: string;
   content: string;
-}
-
-type Source = {
-  id: string;
-  name: string;
 };

@@ -5,7 +5,7 @@ export abstract class BaseApi {
 
   constructor() {
     this._http = axios.create({
-      baseURL: import.meta.env.VITE_API_URL,
+      baseURL: import.meta.env.VITE_BASE_URL,
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',

@@ -1,4 +1,4 @@
-import ArticleResult from '@/domain/entity/article/structures/ArticleResult';
+import { ArticleResult } from '@/domain/entity/article/structures/ArticleResult';
 
 export interface GetArticleParams {
   q: string;
@@ -10,6 +10,15 @@ export interface GetArticleParams {
   page: number;
 }
 
+export interface GetHeadlineArticleParams {
+  country: string;
+  pageSize: number;
+  page: number;
+}
+
 export default interface ArticleRepository {
   getArticle: (params: GetArticleParams) => Promise<ArticleResult>;
+  getHeadlineArticle: (
+    params: GetHeadlineArticleParams
+  ) => Promise<ArticleResult>;
 }

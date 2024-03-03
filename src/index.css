@@ -88,3 +88,11 @@ nav {
   padding-bottom: 20px;
   margin-bottom: 24px;
 }
+
+.article__title {
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

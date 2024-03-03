@@ -1,6 +1,7 @@
-import ArticleResult from '@/domain/entity/article/structures/ArticleResult';
+import { ArticleResult } from '@/domain/entity/article/structures/ArticleResult';
 import ArticleRepository, {
   GetArticleParams,
+  GetHeadlineArticleParams,
 } from '@/domain/repository/article/ArticleRepository';
 
 export default class ArticleUseCase {
@@ -10,9 +11,17 @@ export default class ArticleUseCase {
     this.articleRepository = articleRepository;
   }
 
-  public async get(params: GetArticleParams): Promise<ArticleResult> {
-    const articleResult = await this.articleRepository.getArticle(params);
+  public async getArticles(params: GetArticleParams): Promise<ArticleResult> {
+    const articles = await this.articleRepository.getArticle(params);
 
-    return articleResult;
+    return articles;
+  }
+
+  public async getHeadlineArticles(
+    params: GetHeadlineArticleParams
+  ): Promise<ArticleResult> {
+    const articles = await this.articleRepository.getHeadlineArticle(params);
+
+    return articles;
   }
 }
