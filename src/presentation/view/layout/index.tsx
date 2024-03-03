@@ -8,7 +8,7 @@ const Layout = () => {
     <>
       <Header />
       <ConfigProvider theme={{ token: { colorText: '#1f1f1f' } }}>
-        <main style={{ paddingBottom: 36 }}>
+        <main style={{ paddingBottom: 72 }}>
           <Outlet />
         </main>
       </ConfigProvider>
