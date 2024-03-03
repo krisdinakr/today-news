@@ -1,8 +1,8 @@
 import { FC } from 'react';
-import { Typography, Row, Col, Empty, Flex, Pagination } from 'antd';
+import { Typography } from 'antd';
 
-import ArticleCard from './ArticleCard';
 import { ArticleResult } from '@/domain/entity/article/structures/ArticleResult';
+import ArticleList from './ArticleList';
 
 type Props = {
   article: ArticleResult | null;
@@ -23,41 +23,11 @@ const HeadlineSection: FC<Props> = ({
         Headlines
       </Title>
 
-      {article && article.articles.length > 0 && (
-        <>
-          <Row gutter={[24, 24]} justify="center" align="middle">
-            {article.articles.map((article) => (
-              <Col key={article.title} xs={24} sm={24 / 2} lg={24 / 3}>
-                <ArticleCard article={article} />
-              </Col>
-            ))}
-          </Row>
-          <Flex justify="center" style={{ marginTop: 16 }}>
-            <Pagination
-              defaultCurrent={1}
-              current={activePage}
-              total={article.totalResults}
-              defaultPageSize={6}
-              onChange={onChangePage}
-            />
-          </Flex>
-        </>
-      )}
-
-      {article && article.articles.length === 0 && (
-        <Flex
-          align="center"
-          justify="center"
-          style={{
-            background: 'white',
-            padding: 6,
-            borderRadius: 6,
-            minHeight: '20vh',
-          }}
-        >
-          <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
-        </Flex>
-      )}
+      <ArticleList
+        article={article}
+        activePage={activePage}
+        onChangePage={onChangePage}
+      />
     </div>
   );
 };
