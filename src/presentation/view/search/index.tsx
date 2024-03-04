@@ -19,13 +19,13 @@ const Search: FC = () => {
   const [articles, setArticles] = useState<ArticleResult | null>(null);
 
   useEffect(() => {
-    const fetchHeadline = async () => {
+    const fetchSearch = async () => {
       setIsLoading(true);
       const articleRepository = new ArticleApi();
       const articleUseCase = new ArticleUseCase(articleRepository);
 
       const payload = {
-        q: encodeURIComponent(query!),
+        q: String(query),
         sortBy: 'relevancy',
         pageSize,
         page,
@@ -36,7 +36,7 @@ const Search: FC = () => {
       setArticles(articles);
     };
 
-    fetchHeadline();
+    if (query) fetchSearch();
   }, [page, query, pageSize]);
 
   const onChangePage = (page: number) => setPage(page);

@@ -25,7 +25,12 @@ const ArticleList: FC<Props> = ({
         <>
           <Row gutter={[24, 24]} justify="center" align="middle">
             {article.articles.map((article) => (
-              <Col key={article.title} xs={24} sm={24 / 2} lg={24 / 3}>
+              <Col
+                key={`${article.title}-${article.author}`}
+                xs={24}
+                sm={24 / 2}
+                lg={24 / 3}
+              >
                 <ArticleCard article={article} />
               </Col>
             ))}

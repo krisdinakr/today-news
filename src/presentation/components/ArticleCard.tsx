@@ -1,5 +1,7 @@
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
 import { Card, Space, Typography, Image } from 'antd';
+
 import { Article } from '@/domain/entity/article/structures/ArticleResult';
 import { formatDate } from '../utils/utils';
 
@@ -30,31 +32,33 @@ const CoverCard: FC<{ img: string; title: string }> = ({
 
 const ArticleCard: FC<Props> = ({ article }: Props) => {
   return (
-    <Card
-      cover={<CoverCard img={article.urlToImage} title={article.title} />}
-      styles={{ body: { padding: 16, height: 180 } }}
-      hoverable
+    <Link
+      to={`/article/${encodeURI(article.title)}/${encodeURI(
+        article.source.id || article.source.name
+      )}/${encodeURI(article.author)}`}
     >
-      <Space direction="vertical" size={4} style={{ width: '100%' }}>
-        <Title
-          level={5}
-          style={{ margin: 0, textTransform: 'capitalize' }}
-          ellipsis
-        >
-          {article.author ? article.author.toLowerCase() : '-'} &middot;
-          <span style={{ color: '#595959', fontSize: 14 }}>
-            {' '}
-            {article.source.name}
-          </span>
-        </Title>
-        <Title level={4} className="article__title">
-          {article.title}
-        </Title>
-        <Text style={{ fontSize: 12, color: '#595959' }}>
-          {formatDate(article.publishedAt)}
-        </Text>
-      </Space>
-    </Card>
+      <Card
+        cover={<CoverCard img={article.urlToImage} title={article.title} />}
+        styles={{ body: { padding: 16, height: 180 } }}
+        hoverable
+      >
+        <Space direction="vertical" size={4} style={{ width: '100%' }}>
+          <Title level={5} style={{ margin: 0 }} ellipsis>
+            {article.author || '-'} &middot;
+            <span style={{ color: '#595959', fontSize: 14 }}>
+              {' '}
+              {article.source.name}
+            </span>
+          </Title>
+          <Title level={4} className="article__title">
+            {article.title}
+          </Title>
+          <Text style={{ fontSize: 12, color: '#595959' }}>
+            {formatDate(article.publishedAt)}
+          </Text>
+        </Space>
+      </Card>
+    </Link>
   );
 };
 
